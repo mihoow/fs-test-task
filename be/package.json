@@ -1,0 +1,26 @@
+{
+  "name": "be",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "dotenvx run -- node dist/server.js",
+    "dev": "dotenvx run -- nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
+    "format": "prettier --write --ignore-unknown .",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.51.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
