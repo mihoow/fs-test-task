@@ -9,6 +9,7 @@ export type Features =
   | 'Wyświetlacz elektroniczny';
 
 export interface IProduct {
+  _id: string;
   image: string;
   code: string;
   name: string;

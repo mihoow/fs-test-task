@@ -1,4 +1,7 @@
+export type Environment = 'dev' | 'prod';
+
 export interface IConfig {
   port: number;
-  env: string;
+  env: Environment;
+  mongoURI: string;
 }
