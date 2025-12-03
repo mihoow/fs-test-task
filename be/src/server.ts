@@ -1,8 +1,6 @@
+import app from './app';
 import { config } from './config';
 
-function main() {
-  console.log('Hello world!');
-  console.log('Config: ', config);
-}
-
-main();
+app.listen(config.port, () => {
+  console.log(`Server running on port: ${config.port}`);
+});
