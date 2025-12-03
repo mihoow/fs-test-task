@@ -1,2 +1,12 @@
-version: '3'
-# your services for the task
+services:
+  backend:
+    build:
+      context: ./be
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    develop:
+      watch:
+        - action: sync
+          path: ./be/src
+          target: /app/src
