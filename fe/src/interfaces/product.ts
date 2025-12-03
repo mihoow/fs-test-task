@@ -24,7 +24,7 @@ export interface IProduct {
       value: number;
       period: number;
     };
-    validFrom: Date;
-    validTo: Date;
+    validFrom: Date | string;
+    validTo: Date | string;
   };
 }

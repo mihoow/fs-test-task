@@ -1,5 +1,6 @@
 import { IProduct } from '../interfaces/product';
 
+// eslint-disable-next-line import/no-unused-modules
 export const mockData: IProduct[] = [
   {
     image:
