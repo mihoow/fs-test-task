@@ -1,26 +1,14 @@
-import { z } from 'zod';
+import { ZodType, z } from 'zod';
 import type { IProductListOptions } from '../interfaces/product';
 
-const FILTERS_QUERY_SCHEMA = {
-  c: z.coerce.number().int().min(0),
-  ec: z.enum(['A', 'B', 'C']),
-  f: z.string(),
-  s: z.enum(['price', 'capacity']),
-  q: z.string(),
-  p: z.coerce.number().int().min(1).default(1),
+const FILTERS_QUERY_SCHEMA: Record<string, { name: keyof IProductListOptions; schema: ZodType }> = {
+  c: { name: 'capacity', schema: z.coerce.number().int().min(0) },
+  ec: { name: 'energyClass', schema: z.enum(['A', 'B', 'C']) },
+  f: { name: 'feature', schema: z.string() },
+  s: { name: 'sort', schema: z.enum(['price', 'capacity']) },
+  q: { name: 'query', schema: z.string() },
+  p: { name: 'page', schema: z.coerce.number().int().min(1).default(1) },
 } as const;
-
-const QUERY_KEY_TO_OPTION_KEY = new Map<
-  keyof typeof FILTERS_QUERY_SCHEMA,
-  keyof IProductListOptions
->([
-  ['c', 'capacity'],
-  ['ec', 'energyClass'],
-  ['f', 'feature'],
-  ['s', 'sort'],
-  ['q', 'query'],
-  ['p', 'page'],
-]);
 
 export function parseQueryToOptions(
   queryObj: Record<string, unknown>
@@ -30,16 +18,21 @@ export function parseQueryToOptions(
   for (const [key, value] of Object.entries(queryObj)) {
     const queryKey =
       key in FILTERS_QUERY_SCHEMA ? (key as keyof typeof FILTERS_QUERY_SCHEMA) : null;
-    if (!queryKey) continue;
 
-    const schema = FILTERS_QUERY_SCHEMA[queryKey];
+    if (!queryKey) {
+      console.log(`Unknown products query key: ${key}`);
+      continue;
+    }
+
+    const { name, schema } = FILTERS_QUERY_SCHEMA[queryKey]!;
     const parsed = schema.safeParse(value);
 
-    if (parsed.success && QUERY_KEY_TO_OPTION_KEY.has(queryKey)) {
-      const optionKey = QUERY_KEY_TO_OPTION_KEY.get(queryKey)!;
-
-      listOptions[optionKey] = parsed.data as never;
+    if (!parsed.success) {
+      console.log(`Invalid products query value (${key}: ${value})`);
+      continue;
     }
+
+    listOptions[name] = parsed.data as never;
   }
 
   return listOptions;
