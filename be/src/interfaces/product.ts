@@ -28,3 +28,14 @@ export interface IProduct {
     validTo: Date;
   };
 }
+
+type Sort = 'price' | 'capacity';
+
+export interface IProductListOptions {
+  capacity: Capacity;
+  energyClass: EnergyClass;
+  feature: Features;
+  sort: Sort;
+  query: string;
+  page: number;
+}

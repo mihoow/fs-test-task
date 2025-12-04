@@ -34,4 +34,7 @@ const productSchema = new Schema<IProduct>({
   },
 });
 
+productSchema.index({ code: 1 });
+productSchema.index({ code: 'text', name: 'text' });
+
 export const Product = model('Product', productSchema);
