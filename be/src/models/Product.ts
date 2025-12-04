@@ -34,7 +34,11 @@ const productSchema = new Schema<IProduct>({
   },
 });
 
-productSchema.index({ code: 1 });
+// Search indexes:
 productSchema.index({ code: 'text', name: 'text' });
+productSchema.index({ code: 1 });
+// Sort by indexes:
+productSchema.index({ price: 1 });
+productSchema.index({ capacity: 1 });
 
 export const Product = model('Product', productSchema);
