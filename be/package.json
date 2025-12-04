@@ -7,10 +7,11 @@
     "build": "tsc",
     "start": "dotenvx run -- node dist/server.js",
     "dev": "dotenvx run -- nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "format": "prettier --write --ignore-unknown .",
+    "format": "prettier --write --ignore-unknown --ignore-path ../.prettierignore .",
     "lint": "eslint 'src/**/*.ts'"
   },
   "dependencies": {
+    "@app/shared": "0.0.0",
     "@dotenvx/dotenvx": "^1.51.1",
     "compression": "^1.8.1",
     "cors": "^2.8.5",

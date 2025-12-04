@@ -22,10 +22,11 @@
     "serve": "vite preview",
     "prepare": "husky install",
     "commit": "commit",
-    "format": "prettier --write --ignore-unknown .",
+    "format": "prettier --write --ignore-unknown --ignore-path ../.prettierignore .",
     "lint": "eslint --cache ./src"
   },
   "dependencies": {
+    "@app/shared": "0.0.0",
     "@headlessui/react": "^1.7.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

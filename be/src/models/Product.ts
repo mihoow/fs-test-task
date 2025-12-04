@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import type { IProduct } from '../interfaces/product';
+import type { IProduct } from '@app/shared/interfaces';
 
 const productSchema = new Schema<IProduct>({
   image: { type: String, required: true },

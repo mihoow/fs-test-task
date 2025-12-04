@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { config } from './config';
 import { Product } from './models';
-import { mockData } from './mock/data';
+import { mockData } from '@app/shared/products';
 
 export async function connectDB() {
   try {

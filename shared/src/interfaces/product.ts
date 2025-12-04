@@ -9,7 +9,6 @@ export type Features =
   | 'Wyświetlacz elektroniczny';
 
 export interface IProduct {
-  _id: string;
   image: string;
   code: string;
   name: string;
@@ -28,4 +27,15 @@ export interface IProduct {
     validFrom: Date | string;
     validTo: Date | string;
   };
+}
+
+export type Sort = 'price' | 'capacity';
+
+export interface IProductListOptions {
+  capacity: Capacity;
+  energyClass: EnergyClass;
+  feature: Features;
+  sort: Sort;
+  query: string;
+  page: number;
 }

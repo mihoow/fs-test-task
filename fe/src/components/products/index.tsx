@@ -5,19 +5,16 @@ import { Button } from '../button';
 import { useFilterContext } from '../../contexts/filters';
 import { ChevronDown } from 'react-feather';
 import { getRequest } from '../../api';
-import type { IProduct } from '../../interfaces/product';
-import type { IPagination, Paginated } from '../../interfaces/pagination';
+import type { IProduct, IPagination, Paginated } from '@app/shared/interfaces';
+import { ProductListOptions } from '@app/shared/products';
 
 export const Products = () => {
   const { filters, query } = useFilterContext();
 
-  const productsSearchParams = new URLSearchParams({
-    c: String(filters.capacity),
-    ec: filters.energyClass,
-    f: filters.feature,
-    s: filters.sort,
-    q: query,
-  }).toString();
+  const productsSearchParams = ProductListOptions.toQueryString({
+    ...filters,
+    query,
+  });
 
   const [debouncedParams, setDebouncedParams] = useDebounce(productsSearchParams, 500, {
     leading: true,

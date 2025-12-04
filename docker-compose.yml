@@ -11,8 +11,8 @@ services:
         target: /data/db
   backend:
     build:
-      context: ./be
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./be/Dockerfile
     restart: always
     ports:
       - "8080:8080"
@@ -22,4 +22,7 @@ services:
       watch:
         - action: sync
           path: ./be/src
-          target: /app/src
+          target: /app/be/src
+        - action: sync
+          path: ./shared/dist
+          target: /app/shared/dist

@@ -3,8 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Product } from '../models';
 import { PRODUCTS_PAGE_SIZE } from '../config';
 import { parseQueryToOptions } from './product.filters';
-import type { IProduct } from '../interfaces/product';
-import type { Paginated } from '../interfaces/pagination';
+import type { IProduct, Paginated } from '@app/shared/interfaces';
 
 export async function getProducts(req: Request, res: Response, next: NextFunction) {
   try {
