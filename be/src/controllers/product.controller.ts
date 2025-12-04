@@ -1,9 +1,10 @@
 import { QueryFilter } from 'mongoose';
 import { NextFunction, Request, Response } from 'express';
 import { Product } from '../models';
-import type { IProduct } from '../interfaces/product';
 import { PRODUCTS_PAGE_SIZE } from '../config';
 import { parseQueryToOptions } from './product.filters';
+import type { IProduct } from '../interfaces/product';
+import type { Paginated } from '../interfaces/pagination';
 
 export async function getProducts(req: Request, res: Response, next: NextFunction) {
   try {
@@ -32,11 +33,23 @@ export async function getProducts(req: Request, res: Response, next: NextFunctio
 
     const products = await Product.find(doc)
       .skip((page - 1) * PRODUCTS_PAGE_SIZE)
-      .limit(PRODUCTS_PAGE_SIZE)
+      .limit(PRODUCTS_PAGE_SIZE + 1)
       .sort({ [sort]: 1 })
       .exec();
 
-    res.json(products);
+    const hasMore = products.length > PRODUCTS_PAGE_SIZE;
+    const productsPage = products.slice(0, PRODUCTS_PAGE_SIZE);
+
+    const data: Paginated<IProduct> = {
+      items: productsPage,
+      pagination: {
+        page,
+        pageSize: PRODUCTS_PAGE_SIZE,
+        hasMore,
+      },
+    };
+
+    res.json(data);
   } catch (error) {
     next(error);
   }
