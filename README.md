@@ -42,6 +42,6 @@ yarn dev
 - Mock data is seeded on server boot when products collection is empty.
 
 ## CORS
-Frontend communicates with backend using a vite proxy which bypasses CORS
+Frontend communicates with backend using a vite proxy which bypasses CORS.
 At the same time, backend includes a cors() middleware that can be setup if needed
 
