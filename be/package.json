@@ -1,0 +1,41 @@
+{
+  "name": "be",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "dotenvx run -- node dist/server.js",
+    "dev": "dotenvx run -- nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
+    "format": "prettier --write --ignore-unknown --ignore-path ../.prettierignore .",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@app/shared": "0.0.0",
+    "@dotenvx/dotenvx": "^1.51.1",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "mongoose": "^9.0.0",
+    "morgan": "^1.10.1",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "8",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

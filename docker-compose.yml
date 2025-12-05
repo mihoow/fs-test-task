@@ -1,2 +1,32 @@
-version: '3'
-# your services for the task
+services:
+  mongodb:
+    image: mongo:8
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass123
+    volumes:
+      - type: bind
+        source: ./mongo-data
+        target: /data/db
+  backend:
+    build:
+      context: .
+      dockerfile: ./be/Dockerfile
+    restart: no
+    environment:
+      - PORT=8080
+      - NODE_ENV=dev
+      - MONGO_URI=mongodb://admin:pass123@mongodb:27017/fs-test-task?authSource=admin
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    develop:
+      watch:
+        - action: sync
+          path: ./be/src
+          target: /app/be/src
+        - action: sync
+          path: ./shared/dist
+          target: /app/shared/dist

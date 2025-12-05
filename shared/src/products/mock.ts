@@ -1,4 +1,4 @@
-import { IProduct } from '../interfaces/product';
+import type { IProduct } from '../interfaces';
 
 export const mockData: IProduct[] = [
   {
@@ -140,6 +140,48 @@ export const mockData: IProduct[] = [
       },
       validFrom: new Date('2021-01-01'),
       validTo: new Date('2021-12-31'),
+    },
+  },
+  {
+    image:
+      'https://f00.esfr.pl/foto/5/71215465857/b7c91239dad8f45eae1abe48d24c6b3b/samsung-ww90ta046te,71215465857_8.jpg',
+    code: 'WW90T754ABX',
+    name: 'Pralka QuickDrive™',
+    color: 'biała',
+    capacity: 8,
+    dimensions: '55 x 60 x 85 cm',
+    features: ['Drzwi AddWash™'],
+    energyClass: 'C',
+    price: {
+      value: 1999.0,
+      currency: 'zł',
+      installment: {
+        value: 53.31,
+        period: 60,
+      },
+      validFrom: new Date('2023-01-01'),
+      validTo: new Date('2024-12-31'),
+    },
+  },
+  {
+    image:
+      'https://f00.esfr.pl/foto/5/71215465857/b7c91239dad8f45eae1abe48d24c6b3b/samsung-ww90ta046te,71215465857_8.jpg',
+    code: 'WW90T754ABY',
+    name: 'Pralka QuickDrive™',
+    color: 'biała',
+    capacity: 10.5,
+    dimensions: '55 x 60 x 85 cm',
+    features: ['Drzwi AddWash™', 'Wyświetlacz elektroniczny'],
+    energyClass: 'A',
+    price: {
+      value: 1699.0,
+      currency: 'zł',
+      installment: {
+        value: 53.31,
+        period: 60,
+      },
+      validFrom: new Date('2023-01-01'),
+      validTo: new Date('2024-12-31'),
     },
   },
 ];

@@ -5,13 +5,18 @@
   "description": "Full Stack Test Task",
   "main": "index.js",
   "scripts": {
-    "dev:fe": "cd fe && npm run dev",
-    "dev:be": "docker compose up"
+    "build:shared": "yarn workspace @app/shared build",
+    "dev:fe": "yarn build:shared && cd fe && npm run dev",
+    "dev:be": "yarn build:shared && concurrently \"docker compose watch\" \"docker compose logs -f backend\""
   },
   "author": "Illia S",
   "license": "ISC",
   "workspaces": [
     "fe",
-    "be"
-  ]
+    "be",
+    "shared"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
