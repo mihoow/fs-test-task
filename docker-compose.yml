@@ -13,7 +13,11 @@ services:
     build:
       context: .
       dockerfile: ./be/Dockerfile
-    restart: always
+    restart: no
+    environment:
+      - PORT=8080
+      - NODE_ENV=dev
+      - MONGO_URI=mongodb://admin:pass123@mongodb:27017/fs-test-task?authSource=admin
     ports:
       - "8080:8080"
     depends_on:
